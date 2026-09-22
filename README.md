@@ -1,32 +1,31 @@
 # Coffee Shop Sales AI Assistant ☕🤖
+An AI-powered data assistant built with Python, Streamlit, and Matplotlib that interacts with retail transaction data to answer natural language queries about coffee shop sales performance.
 
-An interactive, data-driven web application and AI assistant built to analyze retail transaction trends and deliver real-time business insights from coffee shop sales data.
+## 📊 App Preview & Visualizations
 
----
+### 1. Interactive Web Interface
+Users can query sales logs dynamically through natural language, backed by a structured data cleaning and processing pipeline powered by the Gemini API.
 
-## 🚀 Key Features
-- **Interactive Sales Dashboard:** Built with **Streamlit** to visualize revenue trends, peak operating hours, product category performance, and customer purchasing patterns.
-- **Natural Language AI Assistant:** Integrated with Google's **Gemini API** to allow stakeholders to query sales data conversationally and receive instant, context-aware analytics.
-- **Data Pipeline & Cleaning:** Features structured data processing scripts to handle raw transactional logs, clean missing values, and prepare high-integrity datasets for modeling.
+![Coffee Shop Sales AI Assistant Interface](stream.png)
 
----
+### 2. Exploratory Data Analysis (Matplotlib)
+Automated charts breaking down peak transaction hours (highlighting that **7:00 to 11:00 accounts for 46% of revenue**) and location-based revenue comparisons across Astoria, Hell's Kitchen, and Lower Manhattan.
 
-## 🛠️ Tech Stack & Tools
-- **Language:** Python
-- **Frontend / UI:** Streamlit
-- **Data Manipulation:** Pandas, NumPy
-- **AI / LLM Integration:** Google GenAI SDK (Gemini)
-- **Version Control:** Git & GitHub
+![Matplotlib EDA Analysis](matplot.png)
 
+## 🚀 Features
+* **Natural Language Queries:** Ask plain-English questions about your 149k-row sales dataset.
+* **Dynamic Streamlit Dashboard:** Instant feedback, KPI summaries, and responsive UI components.
+* **Statistical Visualizations:** Custom Matplotlib charts analyzing hourly trends and regional revenue distribution.
 
+## 🛠️ Tech Stack
+* **Core & Analysis:** Python, Pandas, NumPy
+* **App Interface:** Streamlit
+* **Data Visualization:** Matplotlib
+* **AI & NLP:** Google Generative AI (`google-generativeai`)
+* **Utilities & Environment:** `python-dotenv` (for API key management)
 
-## 📁 Project Architecture & File Structure
-```text
-coffee-shop-ai-assistant/
-│
-├── app.py                      # Main Streamlit web application interface
-├── coffe_sales.ipynb           # Jupyter notebook for exploratory data analysis (EDA)
-├── Coffee Shop Sales.csv       # Raw transaction dataset
-├── coffee_shop_sales_cleaned.csv # Processed and cleaned dataset ready for querying
-├── .gitignore                  # Excludes sensitive environment files and checkpoints
-└── README.md                   # Project documentation
+## ⚙️ Getting Started
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/WAWERU123/coffee-shop-ai-assistant.git](https://github.com/WAWERU123/coffee-shop-ai-assistant.git)
