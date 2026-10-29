@@ -15,7 +15,7 @@ client = genai.Client(api_key=api_key)
 # 2. Load dataset (cached for performance)
 @st.cache_data
 def load_data():
-    df = pd.read_csv('coffee_shop_sales_cleaned.csv')
+    df = pd.read_csv('data/coffee_shop_sales_cleaned.csv')
     if 'transaction_date' in df.columns:
         df['transaction_date'] = pd.to_datetime(df['transaction_date'], errors='coerce')
         df['month'] = df['transaction_date'].dt.month_name()
