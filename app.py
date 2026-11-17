@@ -11,7 +11,22 @@ st.set_page_config(page_title="Coffee Shop AI Analytics Assistant", layout="wide
 
 # 1. Load environment variables & initialize Gemini client securely
 load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
+
+# Safely fetch API key from Streamlit Cloud secrets or local environment
+api_key = None
+try:
+    if "GEMINI_API_KEY" in st.secrets:
+        api_key = st.secrets["GEMINI_API_KEY"]
+except Exception:
+    pass
+
+if not api_key:
+    api_key = os.getenv("GEMINI_API_KEY")
+
+if not api_key:
+    st.error("GEMINI_API_KEY is missing. Please configure it in your Streamlit Cloud Secrets or local .env file.")
+    st.stop()
+
 client = genai.Client(api_key=api_key)
 
 # 2. Load dataset (cached for performance)
