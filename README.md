@@ -1,6 +1,11 @@
 # Coffee Shop Sales AI Assistant ☕🤖
 An AI-powered data assistant built with Python, Streamlit, and Matplotlib that interacts with retail transaction data to answer natural language queries about coffee shop sales performance.
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://coffee-shop-ai-assistant-fcjwpjhi8hpfryzcpjkxaa.streamlit.app/)
+
+## 🚀 Live Demo
+Explore the live web application here: **[View Live App](https://coffee-shop-ai-assistant-fcjwpjhi8hpfryzcpjkxaa.streamlit.app/)**
+
 ## 📊 App Preview & Visualizations
 
 ### 1. Interactive Web Interface
@@ -13,17 +18,17 @@ Automated charts breaking down peak transaction hours (highlighting that **7:00 
 
 ![Matplotlib EDA Analysis](matplot.png)
 
-## 🚀 Features
-* **Natural Language Queries:** Ask plain-English questions about your 149k-row sales dataset.
-* **Dynamic Streamlit Dashboard:** Instant feedback, KPI summaries, and responsive UI components.
-* **Statistical Visualizations:** Custom Matplotlib charts analyzing hourly trends and regional revenue distribution.
+## ✨ Features
+- **Natural Language Queries:** Ask plain-English questions about your 149k-row sales dataset.
+- **Dynamic Streamlit Dashboard:** Instant feedback, KPI summaries, and responsive UI components.
+- **Statistical Visualizations:** Custom Matplotlib charts analyzing hourly trends and regional revenue distribution.
 
 ## 🛠️ Tech Stack
-* **Core & Analysis:** Python, Pandas, NumPy
-* **App Interface:** Streamlit
-* **Data Visualization:** Matplotlib
-* **AI & NLP:** Google Generative AI (`google-generativeai`)
-* **Utilities & Environment:** `python-dotenv` (for API key management)
+- **Core & Analysis:** Python, Pandas, NumPy
+- **App Interface & Deployment:** Streamlit Community Cloud
+- **Data Visualization:** Matplotlib
+- **AI & NLP:** Google GenAI SDK (`google-genai`)
+- **Utilities & Environment:** `python-dotenv` & Streamlit Secrets (for secure API key management)
 
 ## ⚙️ Getting Started
 1. Clone the repository:
