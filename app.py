@@ -1,7 +1,9 @@
 import os
+import time
 import pandas as pd
 from dotenv import load_dotenv
 from google import genai
+from google.api_core.exceptions import ServiceUnavailable
 import streamlit as st
 
 # Page configuration
@@ -94,17 +96,35 @@ def get_dynamic_context(question):
     - Revenue by Store: {revenue_by_store().to_dict()}
     """
 
+# Robust model runner using gemini-3.6-flash with exponential backoff for 503 errors
+def generate_with_retry(prompt, max_retries=3):
+    for attempt in range(max_retries):
+        try:
+            response = client.models.generate_content(
+                model='gemini-3.8-flash',
+                contents=prompt
+            )
+            return response
+        except ServiceUnavailable as e:
+            if attempt == max_retries - 1:
+                raise e
+            time.sleep(2 ** attempt) # Wait 1s, then 2s, then 4s before retrying
+
 # ==========================================
 # STREAMLIT UI & GEMINI INTEGRATION
 # ==========================================
 
 st.title("☕ Coffee Shop Sales AI Analytics Engine")
-st.markdown("Powered by **Live Pandas Functions** and **Google Gemini**.")
 
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Revenue", f"${total_revenue:,.2f}")
 col2.metric("Total Transactions", f"{total_transactions:,}")
 col3.metric("Top Category", top_category)
+
+# Align credit note to the right side below metrics cards
+left_spacer, right_credit = st.columns([2, 1])
+with right_credit:
+    st.markdown("<div style='text-align: right;'>Powered by <b>Live Pandas Functions</b> and <b>Google Gemini</b>.</div>", unsafe_allow_html=True)
 
 st.divider()
 
@@ -114,7 +134,7 @@ user_question = st.text_input(
 )
 
 if user_question:
-    with st.spinner("Executing live pandas analytical functions..."):
+    with st.spinner("Executing live pandas analytical functions and querying Gemini..."):
         # Dynamically retrieve fresh data straight from dataset functions
         live_data_context = get_dynamic_context(user_question)
         
@@ -130,10 +150,7 @@ if user_question:
         """
 
         try:
-            response = client.models.generate_content(
-                model='gemini-3.6-flash',
-                contents=prompt
-            )
+            response = generate_with_retry(prompt)
             st.success("Analysis Complete (Dynamic Pandas Execution)")
             st.markdown(response.text)
         except Exception as e:
